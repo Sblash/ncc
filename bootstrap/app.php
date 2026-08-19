@@ -13,10 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'auth' => \App\Http\Middleware\Authenticate::class,
-            'auth.api' => \App\Http\Middleware\Authenticate::class,
+            'auth' => \App\Middleware\Authenticate::class,
+            'auth.api' => \App\Middleware\Authenticate::class,
             'auth.sanctum' => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+            'guest' => \App\Middleware\RedirectIfAuthenticated::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

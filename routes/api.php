@@ -2,13 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\GameController;
-use App\Http\Controllers\RoundController;
-use App\Http\Controllers\WordController;
-use App\Http\Controllers\VoteController;
-use App\Http\Controllers\StatsController;
-use App\Http\Controllers\CategoryController;
+use App\AuthController;
+use App\GameController;
+use App\RoundController;
+use App\WordController;
+use App\VoteController;
+use App\StatsController;
+use App\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
