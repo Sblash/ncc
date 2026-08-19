@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\Game\ListGames;
-use App\Http\Livewire\Game\CreateGame;
-use App\Http\Livewire\Game\GameLobby;
-use App\Http\Livewire\Game\GameRound;
-use App\Http\Livewire\Game\GameVoting;
-use App\Http\Livewire\Game\GameResults;
-use App\Http\Livewire\Game\GameFinalResults;
-use App\Http\Livewire\Game\GameStats;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
+use App\Livewire\Game\ListGames;
+use App\Livewire\Game\CreateGame;
+use App\Livewire\Game\GameLobby;
+use App\Livewire\Game\GameRound;
+use App\Livewire\Game\GameVoting;
+use App\Livewire\Game\GameResults;
+use App\Livewire\Game\GameFinalResults;
+use App\Livewire\Game\GameStats;
 
 /*
 |--------------------------------------------------------------------------
