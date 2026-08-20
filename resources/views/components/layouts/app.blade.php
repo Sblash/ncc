@@ -28,20 +28,22 @@
                     </div>
 
                     <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                        <a href="{{ route('games.index') }}" 
-                           class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 {{ request()->routeIs('games.index') ? 'text-indigo-600' : '' }}">
-                            Partite
-                        </a>
-                        
-                        <a href="{{ route('games.create') }}" 
-                           class="ml-4 px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 {{ request()->routeIs('games.create') ? 'text-indigo-600' : '' }}">
-                            Crea Partita
-                        </a>
+                        @if(session('auth_user'))
+                            <a href="{{ route('games.index') }}" 
+                               class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 {{ request()->routeIs('games.index') ? 'text-indigo-600' : '' }}">
+                                Partite
+                            </a>
+                            
+                            <a href="{{ route('games.create') }}" 
+                               class="ml-4 px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 {{ request()->routeIs('games.create') ? 'text-indigo-600' : '' }}">
+                                Crea Partita
+                            </a>
 
-                        <a href="{{ route('stats') }}" 
-                           class="ml-4 px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 {{ request()->routeIs('stats') ? 'text-indigo-600' : '' }}">
-                            Statistiche
-                        </a>
+                            <a href="{{ route('stats') }}" 
+                               class="ml-4 px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600 {{ request()->routeIs('stats') ? 'text-indigo-600' : '' }}">
+                                Statistiche
+                            </a>
+                        @endif
                     </div>
 
                     <div class="hidden sm:ml-6 sm:flex sm:items-center">
