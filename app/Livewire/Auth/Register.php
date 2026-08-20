@@ -8,13 +8,11 @@ use Livewire\Component;
 class Register extends Component
 {
     public string $name = '';
-    public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
 
     protected $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users',
+        'name' => 'required|string|max:255|unique:users',
         'password' => 'required|min:8|confirmed',
     ];
 
@@ -25,7 +23,6 @@ class Register extends Component
         try {
             $response = Http::post('/api/register', [
                 'name' => $this->name,
-                'email' => $this->email,
                 'password' => $this->password,
                 'password_confirmation' => $this->password_confirmation,
             ]);
@@ -44,7 +41,7 @@ class Register extends Component
                 }
             }
         } catch (\Exception $e) {
-            $this->addError('email', 'Registration failed. Please try again.');
+            $this->addError('name', 'Registration failed. Please try again.');
         }
     }
 

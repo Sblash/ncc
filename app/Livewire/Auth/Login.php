@@ -7,12 +7,11 @@ use Livewire\Component;
 
 class Login extends Component
 {
-    public string $email = '';
+    public string $name = '';
     public string $password = '';
-    public bool $remember = false;
 
     protected $rules = [
-        'email' => 'required|email',
+        'name' => 'required|string',
         'password' => 'required',
     ];
 
@@ -22,7 +21,7 @@ class Login extends Component
 
         try {
             $response = Http::asForm()->post('/api/login', [
-                'email' => $this->email,
+                'name' => $this->name,
                 'password' => $this->password,
             ]);
 
@@ -32,10 +31,10 @@ class Login extends Component
                 session(['auth_user' => $data['user']]);
                 $this->redirect(route('games.index'), true);
             } else {
-                $this->addError('email', 'Invalid credentials');
+                $this->addError('name', 'Invalid credentials');
             }
         } catch (\Exception $e) {
-            $this->addError('email', 'Connection error. Please try again.');
+            $this->addError('name', 'Connection error. Please try again.');
         }
     }
 
