@@ -127,6 +127,6 @@ class GameVoting extends Component
 
     public function render()
     {
-        return view('livewire.game.game-voting');
+        return view('livewire.game.game-voting')->layout('components.layouts.app');
     }
 }

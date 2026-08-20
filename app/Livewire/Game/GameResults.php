@@ -69,6 +69,6 @@ class GameResults extends Component
 
     public function render()
     {
-        return view('livewire.game.game-results');
+        return view('livewire.game.game-results')->layout('components.layouts.app');
     }
 }

@@ -71,6 +71,6 @@ class ListGames extends Component
     {
         return view('livewire.game.list-games', [
             'games' => $this->getGamesProperty(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

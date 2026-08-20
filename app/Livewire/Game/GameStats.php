@@ -52,6 +52,6 @@ class GameStats extends Component
 
     public function render()
     {
-        return view('livewire.game.game-stats');
+        return view('livewire.game.game-stats')->layout('components.layouts.app');
     }
 }

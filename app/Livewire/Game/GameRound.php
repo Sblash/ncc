@@ -154,6 +154,6 @@ class GameRound extends Component
 
     public function render()
     {
-        return view('livewire.game.game-round');
+        return view('livewire.game.game-round')->layout('components.layouts.app');
     }
 }

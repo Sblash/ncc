@@ -80,6 +80,6 @@ class CreateGame extends Component
 
     public function render()
     {
-        return view('livewire.game.create-game');
+        return view('livewire.game.create-game')->layout('components.layouts.app');
     }
 }
