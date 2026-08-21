@@ -32,6 +32,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
+
     /**
      * Get the attributes that should be cast.
      *
@@ -44,6 +45,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     /**
      * Get the user's initials
      */
@@ -54,5 +56,23 @@ class User extends Authenticatable
         return Str::length($initials) > 1
             ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
             : $initials;
+    }
+
+    /**
+     * Relationship to games the user has joined
+     */
+    public function games()
+    {
+        return $this->belongsToMany(Game::class, 'player_game')
+            ->withPivot('score', 'status')
+            ->withTimestamps();
+    }
+
+    /**
+     * Relationship to games created by the user
+     */
+    public function createdGames()
+    {
+        return $this->hasMany(Game::class, 'creator_id');
     }
 }
