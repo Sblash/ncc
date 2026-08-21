@@ -34,7 +34,7 @@ class EnsureTokenIsValid
             return redirect()->route('login');
         }
 
-        // Set user for Livewire
+        // Set user for Laravel auth
         auth()->setUser($accessToken->tokenable);
 
         return $next($request);

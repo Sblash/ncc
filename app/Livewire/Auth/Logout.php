@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Auth;
 
-use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
 class Logout extends Component
@@ -12,7 +11,14 @@ class Logout extends Component
         try {
             $token = session('auth_token');
             if ($token) {
-                Http::withToken($token)->post('/api/logout');
+                // Trova e cancella il token
+                $user = session('auth_user');
+                if ($user && isset($user['id'])) {
+                    $userModel = \App\Models\User::find($user['id']);
+                    if ($userModel) {
+                        $userModel->tokens()->where('token', hash('sha256', $token))->delete();
+                    }
+                }
             }
             session()->forget(['auth_token', 'auth_user']);
             $this->redirect(route('login'), true);

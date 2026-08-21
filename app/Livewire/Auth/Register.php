@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Auth;
 
-use Illuminate\Support\Facades\Http;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class Register extends Component
@@ -21,27 +23,35 @@ class Register extends Component
         $this->validate();
 
         try {
-            $response = Http::post('/api/register', [
+            Log::info('Registration attempt for username: ' . $this->name);
+
+            // Crea utente direttamente
+            $user = User::create([
                 'name' => $this->name,
-                'password' => $this->password,
-                'password_confirmation' => $this->password_confirmation,
+                'email' => $this->name . '@example.com',
+                'password' => Hash::make($this->password),
+                'stats' => json_encode([
+                    'games_played' => 0,
+                    'total_score' => 0,
+                    'avg_score' => 0,
+                ]),
             ]);
 
-            if ($response->successful()) {
-                $data = $response->json();
-                session(['auth_token' => $data['access_token']]);
-                session(['auth_user' => $data['user']]);
-                $this->redirect(route('games.index'), true);
-            } else {
-                $errors = $response->json();
-                foreach ($errors as $field => $messages) {
-                    foreach ($messages as $message) {
-                        $this->addError($field, $message);
-                    }
-                }
-            }
+            Log::info('User created with ID: ' . $user->id);
+
+            // Crea token Sanctum
+            $token = $user->createToken('auth_token')->plainTextToken;
+            Log::info('Token created for user: ' . $user->id);
+            
+            // Salva in sessione
+            session(['auth_token' => $token]);
+            session(['auth_user' => $user->toArray()]);
+            Log::info('Session set for user: ' . $user->id);
+            
+            $this->redirect(route('games.index'), true);
         } catch (\Exception $e) {
-            $this->addError('name', 'Registration failed. Please try again.');
+            Log::error('Registration failed: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            $this->addError('name', 'Registration failed: ' . $e->getMessage());
         }
     }
 
