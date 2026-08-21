@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="flex justify-end space-x-4">
-                    <button type="button" wire:click="$dispatch('cancel')"
+                    <button type="button" wire:click="cancel"
                             class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Annulla
                     </button>

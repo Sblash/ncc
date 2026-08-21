@@ -16,6 +16,19 @@ class Login extends Component
         'password' => 'required',
     ];
 
+    public function mount(): void
+    {
+        // Controlla se l'utente e' gia' loggato
+        if (session()->has('auth_token') && session()->has('auth_user')) {
+            $token = session('auth_token');
+            $accessToken = \Laravel\Sanctum\PersonalAccessToken::findToken($token);
+            
+            if ($accessToken && $accessToken->tokenable) {
+                $this->redirect(route('games.index'), true);
+            }
+        }
+    }
+
     public function submit(): void
     {
         $this->validate();
